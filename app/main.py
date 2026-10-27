@@ -34,12 +34,56 @@ def get_section_info(section_id: str):
     print(ta_name_list)
 
     # TODO Fix this to return correct values for correct sections.
-    if section_id == "a":
-        return {
-            "section": "section_name",
-            "start_time": "HH:MM",
-            "end_time": "HH:MM",
-            "ta": ["taName1", "taName2"]
-        }
-    else:
-        raise HTTPException(status_code=404, detail="Invalid section id")
+    if section_id is None:
+        raise HTTPException(status_code=404, detail="Missing section id")
+    
+    return {
+        "section": data["section"],
+        "start_time": RECITATION_HOURS[str(section_id)].split("~")[0],
+        "end_time": RECITATION_HOURS[str(section_id)].split("~")[1],
+        "ta": data["ta"]
+    }
+    # if section_id == "a":
+    #     return {
+    #         "section": data["section"],
+    #         "start_time": RECITATION_HOURS["a"].split("~")[0],
+    #         "end_time": RECITATION_HOURS["a"].split("~")[1],
+    #         "ta": data["ta"]
+    #     }
+    # elif section_id == "b":
+    #     return {
+    #         "section": data["section"],
+    #         "start_time": RECITATION_HOURS["b"].split("~")[0],
+    #         "end_time": RECITATION_HOURS["b"].split("~")[1],
+    #         "ta": data["ta"]
+    #     }
+    # elif section_id == "c":
+    #     return {
+    #         "section": data["section"],
+    #         "start_time": RECITATION_HOURS["c"].split("~")[0],
+    #         "end_time": RECITATION_HOURS["c"].split("~")[1],
+    #         "ta": data["ta"]
+    #     }
+    # elif section_id == "d":
+    #     return {
+    #         "section": data["section"],
+    #         "start_time": RECITATION_HOURS["d"].split("~")[0],
+    #         "end_time": RECITATION_HOURS["d"].split("~")[1],
+    #         "ta": data["ta"]
+    #     }
+    # elif section_id == "e":
+    #     return {
+    #         "section": data["section"],
+    #         "start_time": RECITATION_HOURS["e"].split("~")[0],
+    #         "end_time": RECITATION_HOURS["e"].split("~")[1],
+    #         "ta": data["ta"]
+    #     }
+    # elif section_id == "f":
+    #     return {
+    #         "section": data["section"],
+    #         "start_time": RECITATION_HOURS["f"].split("~")[0],
+    #         "end_time": RECITATION_HOURS["f"].split("~")[1],
+    #         "ta": data["ta"]
+    #     }
+    # else:
+    #     raise HTTPException(status_code=404, detail="Invalid section id")
